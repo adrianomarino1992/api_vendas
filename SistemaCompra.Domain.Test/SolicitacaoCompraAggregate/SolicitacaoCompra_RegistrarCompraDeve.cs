@@ -21,7 +21,7 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
             solicitacao.RegistrarCompra(itens);
 
             //Então
-            //Assert.Equal(30, solicitacao.CondicaoPagamento.Valor);
+            Assert.Equal(30, solicitacao.CondicaoPagamento.Valor);
         }
 
         [Fact]
@@ -37,5 +37,6 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
             //Então
             Assert.Equal("A solicitação de compra deve possuir itens!", ex.Message);
         }
+                
     }
 }

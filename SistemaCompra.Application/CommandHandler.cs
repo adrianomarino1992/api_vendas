@@ -23,6 +23,7 @@ namespace SistemaCompra.Application
 
             return false;
         }
+                
 
         public void PublishEvents(IList<Event> events)
         {

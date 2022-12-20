@@ -22,7 +22,7 @@ namespace SistemaCompra.API.Produto
             var query = new ObterProdutoQuery() { Id = id };
             var produtoViewModel = _mediator.Send(query);
             return Ok(produtoViewModel);
-        }
+        }                
 
         [HttpPost, Route("produto/cadastro")]
         [ProducesResponseType(201)]

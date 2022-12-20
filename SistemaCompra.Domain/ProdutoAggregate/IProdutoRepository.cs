@@ -1,13 +1,8 @@
-﻿using System;
-using System.Linq;
-
+﻿
 namespace SistemaCompra.Domain.ProdutoAggregate
 {
-    public interface IProdutoRepository
+    public interface IProdutoRepository : SistemaCompra.Domain.Core.IRepository<Produto>
     {
-        Produto Obter(Guid id);
-        void Registrar(Produto entity);
-        void Atualizar(Produto entity);
-        void Excluir(Produto entity);
+             
     }
 }

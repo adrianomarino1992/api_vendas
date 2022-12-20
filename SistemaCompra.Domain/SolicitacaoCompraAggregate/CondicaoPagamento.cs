@@ -17,5 +17,15 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
             Valor = condicao;
         }
+
+        public static explicit operator int(CondicaoPagamento condicaoPagamento)
+        {
+            return condicaoPagamento.Valor;
+        }
+
+        public static explicit operator CondicaoPagamento( int dias)
+        {
+            return new CondicaoPagamento(dias);
+        }
     }
 }

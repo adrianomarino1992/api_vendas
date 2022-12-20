@@ -13,24 +13,29 @@ namespace SistemaCompra.Infra.Data
 
         public SistemaCompraContext(DbContextOptions options) : base(options) { }
         public DbSet<ProdutoAgg.Produto> Produtos { get; set; }
+        public DbSet<SolicitacaoAgg.SolicitacaoCompra> SolicitacoesCompra { get; set; }
+        public DbSet<SolicitacaoAgg.Item> Items { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProdutoAgg.Produto>()
-                .HasData(
-                    new ProdutoAgg.Produto("Produto01", "Descricao01", "Madeira", 100)
-                );
 
             modelBuilder.Ignore<Event>();
 
+
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new SolicitacaoCompraConfiguration());
+            modelBuilder.ApplyConfiguration(new ItemConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseLoggerFactory(loggerFactory)  
+            optionsBuilder.UseLoggerFactory(loggerFactory)
                 .EnableSensitiveDataLogging()
-                .UseSqlServer(@"Server=localhost\SQLEXPRESS01;Database=SistemaCompraDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+                .UseNpgsql("User ID=supervisor;Password=sup;Host=localhost;Port=5434;Database=sistema_compras");
         }
     }
+
+
+
 }

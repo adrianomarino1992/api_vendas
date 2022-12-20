@@ -7,7 +7,10 @@ using System.Text;
 namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public class Item : Entity
-    {
+    {        
+       
+        public SolicitacaoCompra SolicitacaoCompra { get; set; }
+        public Guid ProdutoId { get; set; }
         public Produto Produto { get; set; }
         public int Qtde { get; set; }
 
@@ -15,7 +18,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         public Item(Produto produto, int qtde)
         {
-            Produto = produto ?? throw new ArgumentNullException(nameof(produto));
+            Produto = produto ?? throw new ArgumentNullException(nameof(produto));           
             Qtde = qtde;
         }
 

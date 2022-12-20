@@ -12,6 +12,7 @@ using SistemaCompra.Domain.ProdutoAggregate;
 using SistemaCompra.Domain.SolicitacaoCompraAggregate;
 using SistemaCompra.Infra.Data;
 using SistemaCompra.Infra.Data.Produto;
+using SistemaCompra.Infra.Data.SolicitacaoCompra;
 using SistemaCompra.Infra.Data.UoW;
 using System;
 
@@ -35,13 +36,17 @@ namespace SistemaCompra.API
             services.AddSignalR();
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ISolicitacaoCompraRepository, SolicitacaoCompraRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<SistemaCompraContext>(options =>
-                options.UseSqlServer(
+                options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection"), 
                     o=> o.MigrationsAssembly("SistemaCompra.API"))
             );
+                      
 
             services.AddSwaggerGen(c =>
             {
@@ -65,6 +70,7 @@ namespace SistemaCompra.API
             {
                 endpoints.MapControllers();
             });
+           
 
             app.UseSwagger();
 
@@ -72,6 +78,8 @@ namespace SistemaCompra.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Prova Sisprev V1");
             });
+
+            
         }
     }
 }

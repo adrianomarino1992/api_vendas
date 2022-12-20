@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace SistemaCompra.Infra.Data.UoW
 {
@@ -15,6 +16,7 @@ namespace SistemaCompra.Infra.Data.UoW
         {
             return sistemaDeComprasContexto.SaveChanges() > 0;
         }
+               
 
         public void Dispose()
         {

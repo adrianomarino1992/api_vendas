@@ -32,5 +32,15 @@ namespace SistemaCompra.Domain.Core.Model
         {
             return new List<Object>() { Value };
         }
+
+        public static explicit operator decimal(Money money)
+        {
+            return money.Value;
+        }
+
+        public static explicit operator Money(decimal value)
+        {
+            return new Money(value);
+        }
     }
 }
